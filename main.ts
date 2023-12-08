@@ -194,12 +194,11 @@ namespace faces {
         * Show the selected mouth on the LED display.
         * @param leftEye if true, wink the left eye, else the right one
         */
-    //% block="wink:left Eye? $isLeft for $ms ms"
+    //% block="wink: left Eye? $isLeft for $ms ms"
     //% expandableArgumentMode="enabled"
     //% weight=70
     export function wink(isLeft: boolean, ms = 0) {
-        let winking = bothEyes(Eye.Down, eyeMap & (Eye.All >> 3));
-
+        let winking = bothEyes(Eye.Down >> 3, myEyes & Eye.All);
         if (isLeft) {
             winking = bothEyes(Eye.Down, myEyes & (Eye.All >> 3));
         } 
