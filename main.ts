@@ -196,11 +196,13 @@ namespace faces {
         */
     //% block="wink: left Eye? $isLeft for $ms ms"
     //% expandableArgumentMode="enabled"
-    //% weight=70
+    //% weight=60
     export function wink(isLeft: boolean, ms = 0) {
-        let winking = bothEyes(Eye.Down >> 3, myEyes & Eye.All);
+        let leftEye = myEyes & Eye.All;
+        let rightEye = myEyes >> 3;
+        let winking = bothEyes(leftEye, Eye.Down);
         if (isLeft) {
-            winking = bothEyes(Eye.Down, myEyes & (Eye.All >> 3));
+            winking = bothEyes(Eye.Down, rightEye);
         } 
         showBitmap(winking, 2, 0);
         pause(ms);
@@ -287,4 +289,8 @@ namespace faces {
     let myMouth = Mouth.Flat;
     let myEyes = Eyes.Open;
     showFace(myEyes, myMouth);
+    pause(2000);
+    wink(true, 2000);
+    pause(2000);
+    wink(false, 2000);
 }
