@@ -101,9 +101,9 @@ namespace faces {
 
     export enum Spin {
         //% block="clockwise"
-        Screw,
+        Clockwise,
         //% block="anti-clockwise"
-        Unscrew
+        Anticlockwise
     };
 
     // LOW_LEVEL TOOLS
@@ -191,6 +191,25 @@ namespace faces {
     }
 
     /**
+        * Show the selected mouth on the LED display.
+        * @param leftEye if true, wink the left eye, else the right one
+        */
+    //% block="wink:left Eye? $isLeft for $ms ms"
+    //% expandableArgumentMode="enabled"
+    //% weight=70
+    export function wink(isLeft: boolean, ms = 0) {
+        let winking = bothEyes(Eye.Down, eyeMap & (Eye.All >> 3));
+
+        if (isLeft) {
+            winking = bothEyes(Eye.Down, myEyes & (Eye.All >> 3));
+        } 
+        showBitmap(winking, 2, 0);
+        pause(ms);
+        showBitmap(myEyes, 2, 0);
+        
+    }
+
+    /**
      * Look in the chosen direction.
      * @param upDown vertical eye-position
      * @param leftRight horizontal eye-position
@@ -244,7 +263,7 @@ namespace faces {
     //% block="roll eyes %dir"
     //% weight=50
     export function rollEyes(spin: Spin) {
-        if (spin == Spin.Screw) {
+        if (spin == Spin.Clockwise) {
             look(EyesV.Up, EyesH.Left, 125);
             look(EyesV.Up, EyesH.Ahead, 125);
             look(EyesV.Up, EyesH.Right, 125);
