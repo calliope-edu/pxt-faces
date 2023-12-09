@@ -109,6 +109,15 @@ If you repeatedly click on the "+", you can set optional parameters:
 
 > ``||faces:wait||`` - (a boolean) if true: wait, else return immediately
 
+
+## Blinking
+
+## Winking
+```sig
+faces.blink(gapLow: number, gapHigh: number)
+```
+
+
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 > Open this page at [https://grandpabond.github.io/pxt-faces/](https://grandpabond.github.io/pxt-faces/)
 

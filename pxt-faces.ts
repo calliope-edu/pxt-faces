@@ -132,11 +132,27 @@ namespace faces {
             }
         }
     }
-
+    // change back to previous expression
     function revertAfter(ms: number) {
         pause(ms);
         showBitmap(myEyes, 2, 0);
         showBitmap(myMouth, 3, 2);
+    }
+
+    // pause for ms +/- vary%
+    function delay(ms: number, vary: number) {
+        let time = ms * (100 + (randint(0, 2 * vary) - vary)) / 100;
+        pause(time);
+    }
+
+    // blink, saving current eyes (even if temporarily changed)
+    function doBlink(){
+
+    }
+
+    // restore current eyes (even if temporarily changed)
+    function unBlink() {
+
     }
 
     // EXPORTED USER INTERFACES  
@@ -326,4 +342,24 @@ namespace faces {
         }
         showBitmap(myEyes, 2, 0);
     }
+
+    /**
+         * Blink occasionally.
+         * @param Gap the average time (in millisecs) between blinks
+         *          (if zero, stops blinking)
+         * @param Vary the maximum % random variation in spacing
+         */
+    //% block="blink every $gap +/- $vary $ms %"
+    //% inlineInputMode=inline
+    //% weight=50
+    export function blink(gap: number, vary:number) {
+        control.inBackground(function () {
+            while (gap > 0) {
+                doBlink();
+                delay(gap, vary);
+                unBlink();
+            }
+         });
+    }
+
 }
