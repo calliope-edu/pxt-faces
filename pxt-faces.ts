@@ -133,62 +133,86 @@ namespace faces {
         }
     }
 
+    function revertAfter(ms: number) {
+        pause(ms);
+        showBitmap(myEyes, 2, 0);
+        showBitmap(myMouth, 3, 2);
+    }
+
     // EXPORTED USER INTERFACES  
 
     /**
      * Show the selected face on the LED display.
      * @param eyes choice of eyes
      * @param mouth choice of mouth
+     * Optional parameters:
      * @param ms for how long (if temporary change)
+     * @param wait if true: wait, else return immediately
      */
-    //% block="show face: eyes= $eyes, mouth= $mouth|| for $ms ms"
+    //% block="show face: eyes= $eyes, mouth= $mouth|| for $ms ms|| wait? $wait"
+    //% inlineInputMode=inline
     //% expandableArgumentMode="enabled"
     //% weight=90
-    export function showFace(eyes: Eyes, mouth: Mouth, ms = 0) {
+    export function showFace(eyes: Eyes, mouth: Mouth, ms = 0, wait = true) {
         showBitmap(eyes, 2, 0);
         showBitmap(mouth, 3, 2);
         if (ms == 0) {
             myEyes = eyes;
             myMouth = mouth;
         } else {
-            pause(ms);
-            showBitmap(myEyes, 2, 0);
-            showBitmap(myMouth, 3, 2);
+            if (wait) {
+                revertAfter(ms);
+            } else {
+                control.inBackground(function () { revertAfter(ms) });
+            }
         }
     }
 
     /**
      * Show the selected eyes on the LED display.
      * @param eyes choice of eyes
+     * Optional parameters:
      * @param ms for how long (if temporary change)
+     * @param wait if true: wait, else return immediately
      */
-    //% block="show eyes: $eyes|| for $ms ms"
+    //% block="show eyes: $eyes|| for $ms ms|| wait? $wait"
+    //% inlineInputMode=inline
+    //% expandableArgumentMode="enabled"
     //% weight=80
-    export function showEyes(eyes: Eyes, ms = 0) {
+    export function showEyes(eyes: Eyes, ms = 0, wait = true) {
         showBitmap(eyes, 2, 0);
         if (ms == 0) {
             myEyes = eyes;
         } else {
-            pause(ms);
-            showBitmap(myEyes, 2, 0);
+            if (wait) {
+                revertAfter(ms);
+            } else {
+                control.inBackground(function () { revertAfter(ms) });
+            }
         }
     }
 
     /**
      * Show the selected mouth on the LED display.
      * @param mouth choice of mouth
+     * Optional parameters:
      * @param ms for how long (if temporary change)
+     * @param wait if true: wait, else return immediately
      */
-    //% block="show mouth: $mouth|| for $ms ms"
+    //% block="show mouth: $mouth|| for $ms ms|| wait? $wait"
+    //% inlineInputMode=inline
     //% expandableArgumentMode="enabled"
     //% weight=70
-    export function showMouth(mouth: Mouth, ms = 0) {
+    export function showMouth(mouth: Mouth, ms = 0, wait = true) {
         showBitmap(mouth, 3, 2);
         if (ms == 0) {
             myMouth = mouth;
         } else {
-            pause(ms);
-            showBitmap(myMouth, 3, 2);
+            if (wait) {
+                revertAfter(ms);
+            } else {
+                control.inBackground(function () { revertAfter(ms) });
+            }
         }
     }
 
@@ -196,12 +220,15 @@ namespace faces {
      * Look in the chosen direction.
      * @param upDown vertical eye-position
      * @param leftRight horizontal eye-position
+     * Optional parameters:
      * @param ms for how long (if temporary glance)
+     * @param wait if true: wait, else return immediately
      */
-    //% block="look $upDown $leftRight|| for $ms ms"
+    //% block="look $upDown $leftRight|| for $ms ms|| wait? $wait"
+    //% inlineInputMode=inline
     //% expandableArgumentMode="enabled"
     //% weight=60
-    export function look(upDown: EyesV, leftRight: EyesH, ms = 0) {
+    export function look(upDown: EyesV, leftRight: EyesH, ms = 0, wait = true) {
         let eyeMap = 0;
         if ((upDown == EyesV.Level) && (leftRight == EyesH.Ahead)) {
             eyeMap = Eye.All + (Eye.All << 3);
@@ -235,8 +262,11 @@ namespace faces {
         if (ms == 0) {
             myEyes = eyeMap;
         } else {
-            pause(ms);
-            showBitmap(myEyes, 2, 0);
+            if (wait) {
+                revertAfter(ms);
+            } else {
+                control.inBackground(function () { revertAfter(ms) });
+            }
         }
     }
 
@@ -244,12 +274,16 @@ namespace faces {
     /**
      * Wink an eye for a short time.
      * @param leftEye if true, wink the left eye, else the right one
-     * @param ms for how long
+     * Optional parameters:
+     * @param ms for how long (default is 750 ms)
+     * @param wait if true: wait, else return immediately
+
      */
-    //% block="wink: left Eye? $isLeft for $ms ms"
+    //% block="wink: left Eye? $isLeft for $ms ms|| wait? $wait"
+    //% inlineInputMode=inline
     //% expandableArgumentMode="enabled"
     //% weight=50
-    export function wink(isLeft: boolean, ms = 0) {
+    export function wink(isLeft: boolean, ms = 750, wait = true) {
         let leftEye = myEyes & Eye.All;
         let rightEye = (myEyes >> 3) & Eye.All;
         let winking = bothEyes(leftEye, Eye.Down);
@@ -257,8 +291,11 @@ namespace faces {
             winking = bothEyes(Eye.Down, rightEye);
         }
         showBitmap(winking, 2, 0);
-        pause(ms);
-        showBitmap(myEyes, 2, 0);
+        if (wait) {
+            revertAfter(ms);
+        } else {
+            control.inBackground(function () { revertAfter(ms) });
+        }
     }
 
     /**

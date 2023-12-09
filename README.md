@@ -11,6 +11,9 @@ Sometimes a change of expression is only temporary (like a laugh or a wink).
 Other times it show a more permanent change of mood (like a sulk).
 All the ``||faces:faces||`` blocks give you that choice. 
 
+Your micro:bit may want to run some other code while temporarily changing its expression.
+All the blocks let you either wait or return immediately, undoing the temporary change in the background.  
+
 ## Showing a Face
 ```sig
 faces.showFace(eyes,mouth)
@@ -21,10 +24,12 @@ This block displays a new face with a selected expression.
 
 > ``||faces:mouth||`` - chooses which mouth to show.
 
-If you click on the "+", you can set an optional parameter:
+If you repeatedly click on the "+", you can set optional parameters:
 
-> ``||meter:ms||`` - if greater than zero, this says how long (in microsecs) to temporarily show the new face,
+> ``||faces:ms||`` - if greater than zero, this says how long (in microsecs) to temporarily show the new face,
  before going back to the previous expression.
+
+> ``||faces:wait||`` - (a boolean) if true: wait, else return immediately
 
 ## Changing the Eyes
 ```sig
@@ -34,10 +39,12 @@ This block changes just the eyes on your micro:bit's face.
 
 > ``||faces:eyes||`` - chooses from a selection of eyes.
 
-If you click on the "+", you can set an optional parameter:
+If you repeatedly click on the "+", you can set optional parameters:
 
-> ``||meter:ms||`` - if greater than zero, this says how long (in microsecs) to temporarily show the new eyes,
+> ``||faces:ms||`` - if greater than zero, this says how long (in microsecs) to temporarily show the new eyes,
  before going back to the previous expression.
+
+> ``||faces:wait||`` - (a boolean) if true: wait, else return immediately
 
 ## Changing the Mouth
 ```sig
@@ -47,10 +54,12 @@ This block changes just the mouth on your micro:bit's face.
 
 > ``||faces:mouth||`` - chooses from a selection of different mouth shapes.
 
-If you click on the "+", you can set an optional parameter:
+If you repeatedly click on the "+", you can set optional parameters:
 
-> ``||meter:ms||`` - if greater than zero, this says how long (in microsecs) to temporarily show the new mouth,
+> ``||faces:ms||`` - if greater than zero, this says how long (in microsecs) to temporarily show the new mouth,
  before going back to the previous expression.
+
+> ``||faces:wait||`` - (a boolean) if true: wait, else return immediately
 
 ## Looking Around
 ```sig
@@ -62,9 +71,11 @@ This block adjusts the eyes to look in a chosen direction.
 
 > ``||faces:mouth||`` - adjusts them horizonally.
 
-If you click on the "+", you can set an optional parameter:
+If you repeatedly click on the "+", you can set optional parameters:
 
-> ``||meter:ms||`` - if greater than zero, this says how long (in microsecs) to temporarily glance in the chosen direction.
+> ``||faces:ms||`` - if greater than zero, this says how long (in microsecs) to temporarily glance in the chosen direction.
+
+> ``||faces:wait||`` - (a boolean) if true: wait, else return immediately
 
 ## Showing a Face
 ```sig
@@ -74,34 +85,29 @@ This block rolls the eyes in the chosen direction.
 
 > ``||faces:direction||`` - chooses from a selection of eyes.
 
-If you click on the "+", you can set an optional parameter:
+If you repeatedly click on the "+", you can set optional parameters:
 
-> ``||meter:ms||`` - if greater than zero, this says how long (in microsecs) to temporarily show the new face,
+> ``||faces:ms||`` - if greater than zero, this says how long (in microsecs) to temporarily show the new face,
  before going back to the previous expression.
 
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+> ``||faces:wait||`` - (a boolean) if true: wait, else return immediately
 
-
-## Displaying a value #meter-show
-
+## Winking
 ```sig
-meter.show(value,  ms)
+faces.wink(leftEye,ms, wait)
 ```
-This block adjusts the meter to show a new reading.
 
-> ``||meter:value||`` - is the new value to be shown.
+This block lets you wink the chosen eye, regardless of what face is currently showing.
+the default wink takes 750ms, but you can optionally change this.
 
-If you click on the "+", you can set an optional parameter:
+> ``||faces:isLeft||`` - (a boolean) if true: winks the left eye, else the right.
 
-> ``||meter:ms||`` - is used to control the settling time of an animated adjustment to the new value. 
-The meter will display in-between values, arriving at the new ``||meter:value||`` after ms millisecs.  
+If you repeatedly click on the "+", you can set optional parameters:
 
-### ~reminder
-NOTE: If you try to show a value that is too big or too small, your meter will stop at the 
-nearest end, but will then flash to indicate the "out-of-range" error.
-### ~
+> ``||faces:ms||`` - if greater than zero, this says how long (in microsecs) to temporarily show the new face,
+ before going back to the previous expression.
 
-
+> ``||faces:wait||`` - (a boolean) if true: wait, else return immediately
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 > Open this page at [https://grandpabond.github.io/pxt-faces/](https://grandpabond.github.io/pxt-faces/)
