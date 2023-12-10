@@ -8,7 +8,8 @@
     },
     "files": [
         "README.md",
-        "pxt-faces.ts"
+        "pxt-faces.ts",
+        "tutorial-info-cache.json"
     ],
     "testFiles": [
         "main.ts",
