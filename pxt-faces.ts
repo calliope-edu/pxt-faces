@@ -171,6 +171,8 @@ namespace faces {
     //% block="show face: eyes= $eyes, mouth= $mouth|| for $ms ms|| wait? $wait"
     //% inlineInputMode=inline
     //% expandableArgumentMode="enabled"
+    //% ms.shadow="timePicker"
+    //% wait.shadow="toggleYesNo"
     //% weight=90
     export function showFace(eyes: Eyes, mouth: Mouth, ms = 0, wait = true) {
         showBitmap(eyes, 2, 0);
@@ -180,7 +182,7 @@ namespace faces {
             myEyes = eyes;
             myMouth = mouth;
         } else {
-            ms = clamp(100,ms,10000); 
+            ms = clamp(100, ms, 10000);
             if (wait) {
                 revertAfter(ms);
             } else {
@@ -199,10 +201,12 @@ namespace faces {
     //% block="show eyes: $eyes|| for $ms ms|| wait? $wait"
     //% inlineInputMode=inline
     //% expandableArgumentMode="enabled"
+    //% ms.shadow="timePicker"
+    //% wait.shadow="toggleYesNo"
     //% weight=80
     export function showEyes(eyes: Eyes, ms = 0, wait = true) {
         showBitmap(eyes, 2, 0);
-        litEyes = eyes; 
+        litEyes = eyes;
         if (ms == 0) {
             myEyes = eyes;
         } else {
@@ -225,6 +229,8 @@ namespace faces {
     //% block="show mouth: $mouth|| for $ms ms|| wait? $wait"
     //% inlineInputMode=inline
     //% expandableArgumentMode="enabled"
+    //% ms.shadow="timePicker"
+    //% wait.shadow="toggleYesNo"
     //% weight=70
     export function showMouth(mouth: Mouth, ms = 0, wait = true) {
         showBitmap(mouth, 3, 2);
@@ -251,6 +257,8 @@ namespace faces {
     //% block="look $upDown $leftRight|| for $ms ms|| wait? $wait"
     //% inlineInputMode=inline
     //% expandableArgumentMode="enabled"
+    //% ms.shadow="timePicker"
+    //% wait.shadow="toggleYesNo"
     //% weight=60
     export function look(upDown: EyesV, leftRight: EyesH, ms = 0, wait = true) {
         let eyeMap = 0;
@@ -308,6 +316,10 @@ namespace faces {
     //% block="wink: left Eye? $isLeft|| for $ms ms|| wait? $wait"
     //% inlineInputMode=inline
     //% expandableArgumentMode="enabled"
+    //% ms.defl=750
+    //% isLeft.shadow="toggleYesNo"
+    //% ms.shadow="timePicker"
+    //% wait.shadow="toggleYesNo"
     //% weight=50
     export function wink(isLeft: boolean, ms = 750, wait = true) {
         let leftEye = myEyes & Eye.All;
@@ -367,17 +379,22 @@ namespace faces {
     //% block="blink every $gap +/- $vary %|| for $ms ms"
     //% inlineInputMode=inline
     //% expandableArgumentMode="enabled"
-    //% weight=50
-    export function blink(gap: number, vary:number, ms = 125) {
-        blinkGap = clamp(100,gap,10000);
-        blinkVary = clamp(0,vary,99);
-        blinkTime = clamp(100,ms,1000);
+    //% gap.defl=2000
+    //% vary.defl=60
+    //% ms.defl=125
+    //% gap.shadow="timePicker"
+    //% ms.shadow="timePicker"
+    //% weight=30
+    export function blink(gap: number, vary: number, ms = 125) {
+        blinkGap = clamp(100, gap, 10000);
+        blinkVary = clamp(0, vary, 99);
+        blinkTime = clamp(100, ms, 1000);
         if (gap > 0) {
             control.inBackground(function () { blinker() });
         }
     }
 
-// INITIALISE
+    // INITIALISE
 
     let myEyes = 0;
     let myMouth = 0;
