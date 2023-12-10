@@ -132,28 +132,31 @@ namespace faces {
             }
         }
     }
-    // change back to previous expression
+    // change back after temporary expression
     function revertAfter(ms: number) {
         pause(ms);
         showBitmap(myEyes, 2, 0);
         showBitmap(myMouth, 3, 2);
     }
 
-    // pause for ms +/- vary%
-    function delay(ms: number, vary: number) {
-        let time = ms * (100 + (randint(0, 2 * vary) - vary)) / 100;
-        pause(time);
+    // background blinker periodically shuts eyes (reverts to litMap, 
+    // to allow concurrence with temporary changes)
+    function blinker() {
+        while (blinkGap > 0) {
+            showBitmap(Eyes.Shut, 2, 0);
+            pause(blinkTime);
+            showBitmap(litEyes, 2, 0);
+            // apply some jitter to time between blinks
+            let percent = 100 + randint(0, 2 * blinkVary) - blinkVary;
+            let time = blinkGap * percent / 100;
+            pause(time);
+        } // (keep blinking until blinkGap set to zero)
+    }
+    // range-clamper:
+    function clamp(bottom: number, input: number, top: number): number {
+        return (Math.max(bottom, Math.min(input, top)));
     }
 
-    // blink, saving current eyes (even if temporarily changed)
-    function doBlink(){
-
-    }
-
-    // restore current eyes (even if temporarily changed)
-    function unBlink() {
-
-    }
 
     // EXPORTED USER INTERFACES  
 
@@ -171,11 +174,13 @@ namespace faces {
     //% weight=90
     export function showFace(eyes: Eyes, mouth: Mouth, ms = 0, wait = true) {
         showBitmap(eyes, 2, 0);
+        litEyes = eyes;
         showBitmap(mouth, 3, 2);
         if (ms == 0) {
             myEyes = eyes;
             myMouth = mouth;
         } else {
+            ms = clamp(100,ms,10000); 
             if (wait) {
                 revertAfter(ms);
             } else {
@@ -197,9 +202,11 @@ namespace faces {
     //% weight=80
     export function showEyes(eyes: Eyes, ms = 0, wait = true) {
         showBitmap(eyes, 2, 0);
+        litEyes = eyes; 
         if (ms == 0) {
             myEyes = eyes;
         } else {
+            ms = clamp(100, ms, 10000);
             if (wait) {
                 revertAfter(ms);
             } else {
@@ -224,6 +231,7 @@ namespace faces {
         if (ms == 0) {
             myMouth = mouth;
         } else {
+            ms = clamp(100, ms, 10000);
             if (wait) {
                 revertAfter(ms);
             } else {
@@ -275,9 +283,11 @@ namespace faces {
             }
         }
         showBitmap(eyeMap, 2, 0);
+        litEyes = eyeMap;
         if (ms == 0) {
             myEyes = eyeMap;
         } else {
+            ms = clamp(100, ms, 10000);
             if (wait) {
                 revertAfter(ms);
             } else {
@@ -307,6 +317,8 @@ namespace faces {
             winking = bothEyes(Eye.Down, rightEye);
         }
         showBitmap(winking, 2, 0);
+        litEyes = winking;
+        ms = clamp(100, ms, 10000);
         if (wait) {
             revertAfter(ms);
         } else {
@@ -341,25 +353,36 @@ namespace faces {
             look(EyesV.Up, EyesH.Left, 125);
         }
         showBitmap(myEyes, 2, 0);
+        litEyes = myEyes;
     }
 
     /**
          * Blink occasionally.
          * @param Gap the average time (in millisecs) between blinks
-         *          (if zero, stops blinking)
+         *          (if zero, stop blinking)
          * @param Vary the maximum % random variation in spacing
+         * Optionally parameter: 
+         * @param ms new length of a blink (in millisecs)
          */
-    //% block="blink every $gap +/- $vary $ms %"
+    //% block="blink every $gap +/- $vary %|| for $ms ms"
     //% inlineInputMode=inline
+    //% expandableArgumentMode="enabled"
     //% weight=50
-    export function blink(gap: number, vary:number) {
-        control.inBackground(function () {
-            while (gap > 0) {
-                doBlink();
-                delay(gap, vary);
-                unBlink();
-            }
-         });
+    export function blink(gap: number, vary:number, ms = 125) {
+        blinkGap = clamp(100,gap,10000);
+        blinkVary = clamp(0,vary,99);
+        blinkTime = clamp(100,ms,1000);
+        if (gap > 0) {
+            control.inBackground(function () { blinker() });
+        }
     }
 
+// INITIALISE
+
+    let myEyes = 0;
+    let myMouth = 0;
+    let litEyes = 0;
+    let blinkGap = 0;
+    let blinkVary = 0;
+    let blinkTime = 125;
 }
