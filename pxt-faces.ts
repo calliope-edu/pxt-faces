@@ -305,7 +305,7 @@ namespace faces {
      * @param wait if true: wait, else return immediately
 
      */
-    //% block="wink: left Eye? $isLeft for $ms ms|| wait? $wait"
+    //% block="wink: left Eye? $isLeft|| for $ms ms|| wait? $wait"
     //% inlineInputMode=inline
     //% expandableArgumentMode="enabled"
     //% weight=50

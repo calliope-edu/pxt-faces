@@ -14,6 +14,9 @@ All the ``||faces:faces||`` blocks give you that choice.
 Your micro:bit may want to run some other code while temporarily changing its expression.
 All the blocks let you either wait or return immediately, undoing the temporary change in the background.  
 
+Your micro:bit will appear much more lifelike if it blinks occasionally. 
+You can turn on blinking and even change its rate and predictability.
+
 ## Showing a Face
 ```sig
 faces.showFace(eyes,mouth)
@@ -69,7 +72,7 @@ This block adjusts the eyes to look in a chosen direction.
 
 > ``||faces:upDown||`` - adjusts them vertically.
 
-> ``||faces:mouth||`` - adjusts them horizonally.
+> ``||faces:leftRight||`` - adjusts them horizonally.
 
 If you repeatedly click on the "+", you can set optional parameters:
 
@@ -96,26 +99,34 @@ If you repeatedly click on the "+", you can set optional parameters:
 ```sig
 faces.wink(leftEye,ms, wait)
 ```
-
 This block lets you wink the chosen eye, regardless of what face is currently showing.
-the default wink takes 750ms, but you can optionally change this.
+The default wink takes 750ms, but you can optionally change this.
 
 > ``||faces:isLeft||`` - (a boolean) if true: winks the left eye, else the right.
 
 If you repeatedly click on the "+", you can set optional parameters:
 
-> ``||faces:ms||`` - if greater than zero, this says how long (in microsecs) to temporarily show the new face,
+> ``||faces:ms||`` - if greater than zero, this says how long (in microsecs) to wink for,
  before going back to the previous expression.
 
 > ``||faces:wait||`` - (a boolean) if true: wait, else return immediately
 
 
 ## Blinking
-
-## Winking
 ```sig
-faces.blink(gapLow: number, gapHigh: number)
+faces.blink(gap: number, vary: number, ms: number)
 ```
+This block lets you control blinking, helping to show mood. A faster blink-rate appears 
+more agitated. Longer blinks might indicate boredom or sleepiness. Random changes to the 
+gap between blinks makes your micro:bit much more lifelike. 
+
+> ``||faces:gap||`` - the average time (in millisecs) between blinks (if zero, stop blinking)
+
+> ``||faces:vary||`` - the random variation in spacing of blinks (maximum +/- percentage) 
+
+If you click on the "+", you can set an optional parameter: 
+
+> ``||faces:ms||`` - new length of a blink (in millisecs)
 
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
