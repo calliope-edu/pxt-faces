@@ -77,6 +77,28 @@ namespace faces {
         Kiss = 128
     };
 
+    /*
+        export enum Point {
+            //% block=" up-left"
+            NW,
+            //% block="   up"
+            N,
+            //% block=" up-right"
+            NE,
+            //% block="  left"
+            W,
+            //% block="  ahead"
+            A,
+            //% block="  right"
+            E,
+            //% block="down-left"
+            SW,
+            //% block="  down"
+            S,
+            //% block="down-right"
+            SE
+        };
+    */
 
     export enum EyesV {
         //% block="up"
@@ -98,13 +120,6 @@ namespace faces {
         Inwards,
         //% block="outwards"
         Outwards
-    };
-
-    export enum Spin {
-        //% block="clockwise"
-        Clockwise,
-        //% block="anti-clockwise"
-        Anticlockwise
     };
 
     // LOW_LEVEL TOOLS
@@ -168,13 +183,15 @@ namespace faces {
      * @param ms for how long (if temporary change)
      * @param wait if true: wait, else return immediately
      */
-    //% block="show face: eyes= $eyes, mouth= $mouth|| for $ms ms|| wait? $wait"
+    //% block="show face: eyes= $eyes, mouth= $mouth||, for (ms) $ms, wait? $wait"
     //% inlineInputMode=inline
     //% expandableArgumentMode="enabled"
     //% ms.shadow="timePicker"
+    //% ms.defl=0
     //% wait.shadow="toggleYesNo"
+    //% wait.defl=true
     //% weight=90
-    export function showFace(eyes: Eyes, mouth: Mouth, ms = 0, wait = true) {
+    export function showFace(eyes: Eyes, mouth: Mouth, ms = 2000, wait = true) {
         showBitmap(eyes, 2, 0);
         litEyes = eyes;
         showBitmap(mouth, 3, 2);
@@ -198,11 +215,13 @@ namespace faces {
      * @param ms for how long (if temporary change)
      * @param wait if true: wait, else return immediately
      */
-    //% block="show eyes: $eyes|| for $ms ms|| wait? $wait"
+    //% block="show eyes: $eyes|| for (ms) $ms, wait? $wait"
     //% inlineInputMode=inline
     //% expandableArgumentMode="enabled"
     //% ms.shadow="timePicker"
+    //% ms.defl=0
     //% wait.shadow="toggleYesNo"
+    //% wait.defl=true
     //% weight=80
     export function showEyes(eyes: Eyes, ms = 0, wait = true) {
         showBitmap(eyes, 2, 0);
@@ -226,11 +245,13 @@ namespace faces {
      * @param ms for how long (if temporary change)
      * @param wait if true: wait, else return immediately
      */
-    //% block="show mouth: $mouth|| for $ms ms|| wait? $wait"
+    //% block="show mouth: $mouth|| for (ms) $ms, wait? $wait"
     //% inlineInputMode=inline
     //% expandableArgumentMode="enabled"
     //% ms.shadow="timePicker"
+    //% ms.defl=0
     //% wait.shadow="toggleYesNo"
+    //% wait.defl=true
     //% weight=70
     export function showMouth(mouth: Mouth, ms = 0, wait = true) {
         showBitmap(mouth, 3, 2);
@@ -254,11 +275,13 @@ namespace faces {
      * @param ms for how long (if temporary glance)
      * @param wait if true: wait, else return immediately
      */
-    //% block="look $upDown $leftRight|| for $ms ms|| wait? $wait"
+    //% block="look $upDown $leftRight|| for (ms) $ms, wait? $wait"
     //% inlineInputMode=inline
     //% expandableArgumentMode="enabled"
     //% ms.shadow="timePicker"
+    //% ms.defl=0
     //% wait.shadow="toggleYesNo"
+    //% wait.defl=true
     //% weight=60
     export function look(upDown: EyesV, leftRight: EyesH, ms = 0, wait = true) {
         let eyeMap = 0;
@@ -313,13 +336,14 @@ namespace faces {
      * @param wait if true: wait, else return immediately
 
      */
-    //% block="wink: left Eye? $isLeft|| for $ms ms|| wait? $wait"
+    //% block="wink: left Eye? $isLeft|| for (ms) $ms, wait? $wait"
     //% inlineInputMode=inline
     //% expandableArgumentMode="enabled"
-    //% ms.defl=750
     //% isLeft.shadow="toggleYesNo"
     //% ms.shadow="timePicker"
+    //% ms.defl=750
     //% wait.shadow="toggleYesNo"
+    //% wait.defl=true
     //% weight=50
     export function wink(isLeft: boolean, ms = 750, wait = true) {
         let leftEye = myEyes & Eye.All;
@@ -340,12 +364,14 @@ namespace faces {
 
     /**
      * Roll the eyes in either direction.
-     * @param spin clockwise or anti-clockwise
+     * @param clockwise clockwise if true, else anti-clockwise
      */
-    //% block="roll eyes %dir"
+    //% block="roll eyes: clockwise? $clockwise"
+    //% clockwise.shadow="toggleYesNo"
+    //% clockwise.defl=true
     //% weight=40
-    export function rollEyes(spin: Spin) {
-        if (spin == Spin.Clockwise) {
+    export function rollEyes(clockwise: boolean = true) {
+        if (clockwise) {
             look(EyesV.Up, EyesH.Left, 125);
             look(EyesV.Up, EyesH.Ahead, 125);
             look(EyesV.Up, EyesH.Right, 125);
@@ -355,14 +381,14 @@ namespace faces {
             look(EyesV.Down, EyesH.Left, 125);
             look(EyesV.Level, EyesH.Left, 125);
         } else {
+            look(EyesV.Up, EyesH.Right, 125);
+            look(EyesV.Up, EyesH.Ahead, 125);
+            look(EyesV.Up, EyesH.Left, 125);
             look(EyesV.Level, EyesH.Left, 125);
             look(EyesV.Down, EyesH.Left, 125);
             look(EyesV.Down, EyesH.Ahead, 125);
             look(EyesV.Down, EyesH.Right, 125);
             look(EyesV.Level, EyesH.Right, 125);
-            look(EyesV.Up, EyesH.Right, 125);
-            look(EyesV.Up, EyesH.Ahead, 125);
-            look(EyesV.Up, EyesH.Left, 125);
         }
         showBitmap(myEyes, 2, 0);
         litEyes = myEyes;
@@ -370,19 +396,19 @@ namespace faces {
 
     /**
          * Blink occasionally.
-         * @param Gap the average time (in millisecs) between blinks
+         * @param gap the average time (in millisecs) between blinks
          *          (if zero, stop blinking)
-         * @param Vary the maximum % random variation in spacing
+         * @param vary the maximum % random +/- variation in gap
          * Optionally parameter: 
          * @param ms new length of a blink (in millisecs)
          */
-    //% block="blink every $gap +/- $vary %|| for $ms ms"
+    //% block="blink every $gap +/- percent: $vary|| for $ms ms"
     //% inlineInputMode=inline
     //% expandableArgumentMode="enabled"
-    //% gap.defl=2000
-    //% vary.defl=60
-    //% ms.defl=125
     //% gap.shadow="timePicker"
+    //% gap.defl=2000
+    //% vary.min=0 vary.max=99 vary.defl=50
+    //% ms.defl=125
     //% ms.shadow="timePicker"
     //% weight=30
     export function blink(gap: number, vary: number, ms = 125) {
