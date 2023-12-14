@@ -157,16 +157,21 @@ namespace faces {
     // background blinker periodically shuts eyes (reverts to litMap, 
     // to allow concurrence with temporary changes)
     function blinker() {
-        while (blinkGap > 0) {
-            showBitmap(Eyes.Shut, 2, 0);
-            pause(blinkTime);
-            showBitmap(litEyes, 2, 0);
-            // apply some jitter to time between blinks
-            let percent = 100 + randint(0, 2 * blinkVary) - blinkVary;
-            let time = blinkGap * percent / 100;
-            pause(time);
-        } // (keep blinking until blinkGap set to zero)
+        if (!blinking) {
+            blinking = true;
+            while (blinkGap > 0) {
+                showBitmap(Eyes.Shut, 2, 0);
+                pause(blinkTime);
+                showBitmap(litEyes, 2, 0);
+                // apply some jitter to time between blinks
+                let percent = 100 + randint(0, 2 * blinkVary) - blinkVary;
+                let time = blinkGap * percent / 100;
+                pause(time);
+            } // (keep blinking until blinkGap set to zero)
+            blinking = false;
+        } // else there's a blinker already running
     }
+
     // range-clamper:
     function clamp(bottom: number, input: number, top: number): number {
         return (Math.max(bottom, Math.min(input, top)));
@@ -179,7 +184,6 @@ namespace faces {
      * Show the selected face on the LED display.
      * @param eyes choice of eyes
      * @param mouth choice of mouth
-     * Optional parameters:
      * @param ms for how long (if temporary change)
      * @param wait if true: wait, else return immediately
      */
@@ -211,7 +215,6 @@ namespace faces {
     /**
      * Show the selected eyes on the LED display.
      * @param eyes choice of eyes
-     * Optional parameters:
      * @param ms for how long (if temporary change)
      * @param wait if true: wait, else return immediately
      */
@@ -241,7 +244,6 @@ namespace faces {
     /**
      * Show the selected mouth on the LED display.
      * @param mouth choice of mouth
-     * Optional parameters:
      * @param ms for how long (if temporary change)
      * @param wait if true: wait, else return immediately
      */
@@ -271,7 +273,6 @@ namespace faces {
      * Look in the chosen direction.
      * @param upDown vertical eye-position
      * @param leftRight horizontal eye-position
-     * Optional parameters:
      * @param ms for how long (if temporary glance)
      * @param wait if true: wait, else return immediately
      */
@@ -331,7 +332,6 @@ namespace faces {
     /**
      * Wink an eye for a short time.
      * @param leftEye if true, wink the left eye, else the right one
-     * Optional parameters:
      * @param ms for how long (default is 750 ms)
      * @param wait if true: wait, else return immediately
 
@@ -395,11 +395,9 @@ namespace faces {
     }
 
     /**
-         * Blink occasionally.
-         * @param gap the average time (in millisecs) between blinks
-         *          (if zero, stop blinking)
+         * Blink occasionally (or stop).
+         * @param gap average millisecs between blinks (0 to stop)
          * @param vary the maximum % random +/- variation in gap
-         * Optionally parameter: 
          * @param ms new length of a blink (in millisecs)
          */
     //% block="blink every $gap +/- percent: $vary|| for $ms ms"
@@ -425,6 +423,7 @@ namespace faces {
     let myEyes = 0;
     let myMouth = 0;
     let litEyes = 0;
+    let blinking = false;
     let blinkGap = 0;
     let blinkVary = 0;
     let blinkTime = 125;
