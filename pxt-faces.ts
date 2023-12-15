@@ -77,29 +77,6 @@ namespace faces {
         Kiss = 128
     };
 
-    /*
-        export enum Point {
-            //% block=" up-left"
-            NW,
-            //% block="   up"
-            N,
-            //% block=" up-right"
-            NE,
-            //% block="  left"
-            W,
-            //% block="  ahead"
-            A,
-            //% block="  right"
-            E,
-            //% block="down-left"
-            SW,
-            //% block="  down"
-            S,
-            //% block="down-right"
-            SE
-        };
-    */
-
     export enum EyesV {
         //% block="up"
         Up,
@@ -181,7 +158,7 @@ namespace faces {
     // EXPORTED USER INTERFACES  
 
     /**
-     * Show the selected face on the LED display.
+     * show the selected face on the LED display
      * @param eyes choice of eyes
      * @param mouth choice of mouth
      * @param ms for how long (if temporary change)
@@ -213,7 +190,7 @@ namespace faces {
     }
 
     /**
-     * Show the selected eyes on the LED display.
+     * show the selected eyes on the LED display
      * @param eyes choice of eyes
      * @param ms for how long (if temporary change)
      * @param wait if true: wait, else return immediately
@@ -242,7 +219,7 @@ namespace faces {
     }
 
     /**
-     * Show the selected mouth on the LED display.
+     * show the selected mouth on the LED display
      * @param mouth choice of mouth
      * @param ms for how long (if temporary change)
      * @param wait if true: wait, else return immediately
@@ -270,7 +247,7 @@ namespace faces {
     }
 
     /**
-     * Look in the chosen direction.
+     * look in the chosen direction
      * @param upDown vertical eye-position
      * @param leftRight horizontal eye-position
      * @param ms for how long (if temporary glance)
@@ -330,7 +307,7 @@ namespace faces {
 
 
     /**
-     * Wink an eye for a short time.
+     * wink an eye for a short time
      * @param leftEye if true, wink the left eye, else the right one
      * @param ms for how long (default is 750 ms)
      * @param wait if true: wait, else return immediately
@@ -363,7 +340,7 @@ namespace faces {
     }
 
     /**
-     * Roll the eyes in either direction.
+     * roll the eyes in either direction
      * @param clockwise clockwise if true, else anti-clockwise
      */
     //% block="roll eyes: clockwise? $clockwise"
@@ -395,7 +372,7 @@ namespace faces {
     }
 
     /**
-         * Blink occasionally (or stop).
+         * blink occasionally (or stop)
          * @param gap average millisecs between blinks (0 to stop)
          * @param vary the maximum % random +/- variation in gap
          * @param ms new length of a blink (in millisecs)
