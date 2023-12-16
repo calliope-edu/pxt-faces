@@ -8,14 +8,12 @@ Let your micro:bit do the same with the ``||faces:faces||`` extension!
 
 
 Sometimes a change of expression is only temporary (like a laugh or a wink).
-Other times it show a more permanent change of mood (like a sulk).
-All the ``||faces:faces||`` blocks give you that choice. 
-
+Other times it shows a more permanent change of mood (like a sulk).
 Your micro:bit may want to run some other code while temporarily changing its expression.
-All the blocks let you either wait or return immediately, undoing the temporary change in the background.  
+All of the blocks let you either wait or return immediately, undoing the temporary change in the background.  
 
 Your micro:bit will appear much more lifelike if it blinks occasionally. 
-You can turn on blinking and even change its rate and predictability.
+You can turn blinking on or off, and even change its rate and predictability.
 
 ## Showing a Face
 ```sig
@@ -29,8 +27,8 @@ This block displays a new face with a selected expression.
 
 If you repeatedly click on the "+", you can set optional parameters:
 
-> ``||faces:ms||`` - if greater than zero, this says how long (in microsecs) to temporarily show the new face,
- before going back to the previous expression.
+> ``||faces:ms||`` - if greater than zero, this says how long (in microsecs) to temporarily 
+show the new face, before going back to the previous expression.
 
 > ``||faces:wait||`` - (a boolean) if true: wait, else return immediately
 
@@ -44,8 +42,8 @@ This block changes just the eyes on your micro:bit's face.
 
 If you repeatedly click on the "+", you can set optional parameters:
 
-> ``||faces:ms||`` - if greater than zero, this says how long (in microsecs) to temporarily show the new eyes,
- before going back to the previous expression.
+> ``||faces:ms||`` - if greater than zero, this says how long (in microsecs) to temporarily 
+show the new eyes, before going back to the previous expression.
 
 > ``||faces:wait||`` - (a boolean) if true: wait, else return immediately
 
@@ -59,8 +57,8 @@ This block changes just the mouth on your micro:bit's face.
 
 If you repeatedly click on the "+", you can set optional parameters:
 
-> ``||faces:ms||`` - if greater than zero, this says how long (in microsecs) to temporarily show the new mouth,
- before going back to the previous expression.
+> ``||faces:ms||`` - if greater than zero, this says how long (in microsecs) to temporarily 
+show the new mouth, before going back to the previous expression.
 
 > ``||faces:wait||`` - (a boolean) if true: wait, else return immediately
 
@@ -76,24 +74,19 @@ This block adjusts the eyes to look in a chosen direction.
 
 If you repeatedly click on the "+", you can set optional parameters:
 
-> ``||faces:ms||`` - if greater than zero, this says how long (in microsecs) to temporarily glance in the chosen direction.
+> ``||faces:ms||`` - if greater than zero, this says how long (in microsecs) to temporarily 
+glance in the chosen direction.
 
 > ``||faces:wait||`` - (a boolean) if true: wait, else return immediately
 
-## Showing a Face
+## Rolling the Eyes
 ```sig
 faces.rollEyes(direction)
 ```
 This block rolls the eyes in the chosen direction.
 
-> ``||faces:direction||`` - chooses from a selection of eyes.
+> ``||faces:clockwise||`` - clockwise if true, else anti-clockwise.
 
-If you repeatedly click on the "+", you can set optional parameters:
-
-> ``||faces:ms||`` - if greater than zero, this says how long (in microsecs) to temporarily show the new face,
- before going back to the previous expression.
-
-> ``||faces:wait||`` - (a boolean) if true: wait, else return immediately
 
 ## Winking
 ```sig
@@ -111,6 +104,10 @@ If you repeatedly click on the "+", you can set optional parameters:
 
 > ``||faces:wait||`` - (a boolean) if true: wait, else return immediately
 
+
+### ~reminder
+NOTE: when selecting eyes, it is **our** left & right, not the micro:bit's !
+### ~
 
 ## Blinking
 ```sig
