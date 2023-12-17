@@ -1,14 +1,13 @@
 {
     "name": "pxt-faces",
     "version": "0.0.2",
-    "description": "",
+    "description": "animated faces that let your micro:bit express itself",
     "dependencies": {
         "core": "*"
     },
     "files": [
         "README.md",
-        "pxt-faces.ts",
-        "tutorial-info-cache.json"
+        "pxt-faces.ts"
     ],
     "testFiles": [
         "main.ts",

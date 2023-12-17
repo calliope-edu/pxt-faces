@@ -377,7 +377,7 @@ namespace faces {
          * @param vary the maximum % random +/- variation in gap
          * @param ms new length of a blink (in millisecs)
          */
-    //% block="blink every $gap +/- percent: $vary|| for $ms ms"
+    //% block="blink every $gap|| +/- percent: $vary for $ms ms"
     //% inlineInputMode=inline
     //% expandableArgumentMode="enabled"
     //% gap.shadow="timePicker"
@@ -386,11 +386,14 @@ namespace faces {
     //% ms.defl=125
     //% ms.shadow="timePicker"
     //% weight=30
-    export function blink(gap: number, vary: number, ms = 125) {
-        blinkGap = clamp(100, gap, 10000);
+    export function blink(gap: number, vary = 75, ms = 125) {
+        if (gap != 0) {
+            gap = clamp(100, gap, 10000);
+        }
+        blinkGap = gap;
         blinkVary = clamp(0, vary, 99);
         blinkTime = clamp(100, ms, 1000);
-        if (gap > 0) {
+        if (!blinking && (blinkGap > 0)) {
             control.inBackground(function () { blinker() });
         }
     }

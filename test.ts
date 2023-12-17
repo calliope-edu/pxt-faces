@@ -1,6 +1,4 @@
 
-faces.showEyes(faces.Eyes.Open, 0, true);
-basic.pause(500);
 faces.showEyes(faces.Eyes.Sad, 0, true);
 basic.pause(500);
 faces.showEyes(faces.Eyes.Shut, 0, true);
@@ -15,9 +13,10 @@ faces.showEyes(faces.Eyes.Left, 0, true);
 basic.pause(500);
 faces.showEyes(faces.Eyes.Right, 0, true);
 basic.pause(500);
-
-faces.showMouth(faces.Mouth.Flat, 0, true);
+faces.showEyes(faces.Eyes.Open, 0, true);
 basic.pause(500);
+basic.clearScreen();
+
 faces.showMouth(faces.Mouth.Ok, 0, true);
 basic.pause(500);
 faces.showMouth(faces.Mouth.Grin, 0, true);
@@ -38,9 +37,9 @@ faces.showMouth(faces.Mouth.Laugh, 0, true);
 basic.pause(500);
 faces.showMouth(faces.Mouth.Smirk, 0, true);
 basic.pause(500);
-
-faces.showFace(faces.Eyes.Open, faces.Mouth.Flat, 0, true);
+faces.showMouth(faces.Mouth.Flat, 0, true);
 basic.pause(500);
+
 faces.showFace(faces.Eyes.Sad, faces.Mouth.Flat, 0, true);
 basic.pause(500);
 faces.showFace(faces.Eyes.Shut, faces.Mouth.Flat, 0, true);
@@ -55,12 +54,10 @@ faces.showFace(faces.Eyes.Left, faces.Mouth.Flat, 0, true);
 basic.pause(500);
 faces.showFace(faces.Eyes.Right, faces.Mouth.Flat, 0, true);
 basic.pause(500);
-
 faces.showFace(faces.Eyes.Open, faces.Mouth.Flat, 0, true);
 basic.pause(500);
+
 faces.showFace(faces.Eyes.Open, faces.Mouth.Ok, 0, true);
-basic.pause(500);
-faces.showFace(faces.Eyes.Open, faces.Mouth.Grin, 0, true);
 basic.pause(500);
 faces.showFace(faces.Eyes.Open, faces.Mouth.Sulk, 0, true);
 basic.pause(500);
@@ -78,31 +75,53 @@ faces.showFace(faces.Eyes.Open, faces.Mouth.Laugh, 0, true);
 basic.pause(500);
 faces.showFace(faces.Eyes.Open, faces.Mouth.Smirk, 0, true);
 basic.pause(500);
+faces.showFace(faces.Eyes.Open, faces.Mouth.Flat, 0, true);
+basic.pause(500);
+faces.showFace(faces.Eyes.Open, faces.Mouth.Grin, 0, true);
+basic.pause(1500);
 
 for (let v=0; v < 3; v++) {
     for (let h = 0; h < 5; h++) {
         faces.look(v, h, 0, true);
+        basic.pause(500);
     }
 }
+basic.pause(1000);
 
-faces.wink(false, 750, true)
-
-faces.rollEyes(true)
-
-faces.blink(2000, 50, 125)
-
-
-
-
-
-let myMouth = faces.Mouth.Grin;
-let myEyes = faces.Eyes.Pop;
-music.stringPlayable("C D E F G G E E F F D D C C C C", 60);
-faces.showFace(myEyes, myMouth);
 faces.wink(true);
-pause(1000);
+basic.pause(500);
 faces.wink(false);
+basic.pause(500);
+
+faces.wink(true,1000);
+basic.pause(500);
+faces.wink(false,1000);
+basic.pause(1500);
+
+faces.rollEyes(true);
+basic.pause(500);
+faces.rollEyes(false);
+basic.pause(1500);
+
+faces.showFace(faces.Eyes.Open, faces.Mouth.Grin, 0, true);
+faces.blink(2000, 0, 300);
+basic.pause(5000);
+
+faces.blink(2000,80,250)
+let myMouth = faces.Mouth.Grin;
+let myEyes = faces.Eyes.Up;
+faces.showFace(myEyes, myMouth, 3000, false);
 pause(3000);
-faces.showFace(faces.Eyes.Mad, faces.Mouth.Sulk, 7000, false);
+//sing 16 notes then close mouth again
+faces.showMouth(faces.Mouth.Open,16000,false);
+music.stringPlayable("C D E F G G E E F F D D C C C C", 60);
+pause(3000);
+//shout angrily
+faces.blink(500, 80, 100);
+faces.showFace(faces.Eyes.Mad, faces.Mouth.Sulk, 16000, false);
 music.stringPlayable("C D E F G G E E F F D D C C C C", 60);
 pause(5000);
+
+faces.blink(0);
+faces.showFace(faces.Eyes.Open, faces.Mouth.Grin);
+faces.wink(false,1000);
