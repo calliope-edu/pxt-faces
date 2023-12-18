@@ -1,7 +1,7 @@
 /**
  * an extension for making faces...
  */
-//% color=#c097c2 weight=100 icon="\uf118" block="Faces"
+//% color=#c088e0 weight=100 icon="\uf118" block="Faces"
 namespace faces {
     // CONSTANTS & ENUMS...
 
@@ -124,15 +124,16 @@ namespace faces {
             }
         }
     }
-    // change back after temporary expression
+    // change back to [myEyes, myMouth] after temporary expression
     function revertAfter(ms: number) {
         pause(ms);
         showBitmap(myEyes, 2, 0);
         showBitmap(myMouth, 3, 2);
     }
 
-    // background blinker periodically shuts eyes (reverts to litMap, 
-    // to allow concurrence with temporary changes)
+    // background blinker periodically shuts eyes, waits a bit,
+    // then re-displays litEyes (to allow a blink to occur even
+    // during a temporary eye-change, or a wink) 
     function blinker() {
         if (!blinking) {
             blinking = true;
@@ -172,14 +173,14 @@ namespace faces {
     //% wait.shadow="toggleYesNo"
     //% wait.defl=true
     //% weight=90
-    export function showFace(eyes: Eyes, mouth: Mouth, ms = 2000, wait = true) {
+    export function showFace(eyes: Eyes, mouth: Mouth, ms: number = 2000, wait = true) {
         showBitmap(eyes, 2, 0);
         litEyes = eyes;
         showBitmap(mouth, 3, 2);
-        if (ms == 0) {
+        if (ms == 0) { // permanent change
             myEyes = eyes;
             myMouth = mouth;
-        } else {
+        } else { // temporary change
             ms = clamp(100, ms, 10000);
             if (wait) {
                 revertAfter(ms);
@@ -203,12 +204,12 @@ namespace faces {
     //% wait.shadow="toggleYesNo"
     //% wait.defl=true
     //% weight=80
-    export function showEyes(eyes: Eyes, ms = 0, wait = true) {
+    export function showEyes(eyes: Eyes, ms: number = 0, wait = true) {
         showBitmap(eyes, 2, 0);
         litEyes = eyes;
-        if (ms == 0) {
+        if (ms == 0) { // permanent change
             myEyes = eyes;
-        } else {
+        } else { // temporary change
             ms = clamp(100, ms, 10000);
             if (wait) {
                 revertAfter(ms);
@@ -232,11 +233,11 @@ namespace faces {
     //% wait.shadow="toggleYesNo"
     //% wait.defl=true
     //% weight=70
-    export function showMouth(mouth: Mouth, ms = 0, wait = true) {
+    export function showMouth(mouth: Mouth, ms: number = 0, wait = true) {
         showBitmap(mouth, 3, 2);
-        if (ms == 0) {
+        if (ms == 0) { // permanent change
             myMouth = mouth;
-        } else {
+        } else { // temporary change
             ms = clamp(100, ms, 10000);
             if (wait) {
                 revertAfter(ms);
@@ -261,7 +262,7 @@ namespace faces {
     //% wait.shadow="toggleYesNo"
     //% wait.defl=true
     //% weight=60
-    export function look(upDown: EyesV, leftRight: EyesH, ms = 0, wait = true) {
+    export function look(upDown: EyesV, leftRight: EyesH, ms: number = 0, wait = true) {
         let eyeMap = 0;
         if ((upDown == EyesV.Level) && (leftRight == EyesH.Ahead)) {
             eyeMap = Eye.All + (Eye.All << 3);
@@ -293,9 +294,9 @@ namespace faces {
         }
         showBitmap(eyeMap, 2, 0);
         litEyes = eyeMap;
-        if (ms == 0) {
+        if (ms == 0) { // permanent change
             myEyes = eyeMap;
-        } else {
+        } else { // temporary change
             ms = clamp(100, ms, 10000);
             if (wait) {
                 revertAfter(ms);
@@ -322,7 +323,7 @@ namespace faces {
     //% wait.shadow="toggleYesNo"
     //% wait.defl=true
     //% weight=50
-    export function wink(isLeft: boolean, ms = 750, wait = true) {
+    export function wink(isLeft: boolean, ms: number = 750, wait = true) {
         let leftEye = myEyes & Eye.All;
         let rightEye = (myEyes >> 3) & Eye.All;
         let winking = bothEyes(leftEye, Eye.Down);
@@ -349,24 +350,25 @@ namespace faces {
     //% weight=40
     export function rollEyes(clockwise: boolean = true) {
         if (clockwise) {
-            look(EyesV.Up, EyesH.Left, 125);
-            look(EyesV.Up, EyesH.Ahead, 125);
-            look(EyesV.Up, EyesH.Right, 125);
-            look(EyesV.Level, EyesH.Right, 125);
-            look(EyesV.Down, EyesH.Right, 125);
-            look(EyesV.Down, EyesH.Ahead, 125);
-            look(EyesV.Down, EyesH.Left, 125);
-            look(EyesV.Level, EyesH.Left, 125);
+            look(EyesV.Up, EyesH.Left, 150);
+            look(EyesV.Up, EyesH.Ahead, 150);
+            look(EyesV.Up, EyesH.Right, 150);
+            look(EyesV.Level, EyesH.Right, 150);
+            look(EyesV.Down, EyesH.Right, 150);
+            look(EyesV.Down, EyesH.Ahead, 150);
+            look(EyesV.Down, EyesH.Left, 150);
+            look(EyesV.Level, EyesH.Left, 150);
         } else {
-            look(EyesV.Up, EyesH.Right, 125);
-            look(EyesV.Up, EyesH.Ahead, 125);
-            look(EyesV.Up, EyesH.Left, 125);
-            look(EyesV.Level, EyesH.Left, 125);
-            look(EyesV.Down, EyesH.Left, 125);
-            look(EyesV.Down, EyesH.Ahead, 125);
-            look(EyesV.Down, EyesH.Right, 125);
-            look(EyesV.Level, EyesH.Right, 125);
+            look(EyesV.Up, EyesH.Right, 150);
+            look(EyesV.Up, EyesH.Ahead, 150);
+            look(EyesV.Up, EyesH.Left, 150);
+            look(EyesV.Level, EyesH.Left, 150);
+            look(EyesV.Down, EyesH.Left, 150);
+            look(EyesV.Down, EyesH.Ahead, 150);
+            look(EyesV.Down, EyesH.Right, 150);
+            look(EyesV.Level, EyesH.Right, 150);
         }
+        // restore current eyes
         showBitmap(myEyes, 2, 0);
         litEyes = myEyes;
     }
@@ -386,11 +388,11 @@ namespace faces {
     //% ms.defl=125
     //% ms.shadow="timePicker"
     //% weight=30
-    export function blink(gap: number, vary = 75, ms = 125) {
+    export function blink(gap: number, vary: number = 75, ms: number = 125) {
         if (gap != 0) {
             gap = clamp(100, gap, 10000);
         }
-        blinkGap = gap;
+        blinkGap = gap; // (zero teminates any active blinker)
         blinkVary = clamp(0, vary, 99);
         blinkTime = clamp(100, ms, 1000);
         if (!blinking && (blinkGap > 0)) {
