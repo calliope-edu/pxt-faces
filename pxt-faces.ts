@@ -47,7 +47,7 @@ namespace faces {
     };
 
     //MOUTHS: use these pixel-map contributions
-    //       1    2    4   8   16  
+    //       1    2    4    8   16  
     //      32   64  128  256  512 
     //      1K   2K   4K   8K  16K  
     export enum Mouth {
@@ -173,7 +173,7 @@ namespace faces {
     //% wait.shadow="toggleYesNo"
     //% wait.defl=true
     //% weight=90
-    export function showFace(eyes: Eyes, mouth: Mouth, ms: number = 2000, wait = true) {
+    export function showFace(eyes: Eyes, mouth: Mouth, ms: number = 2000, wait: boolean = true) {
         showBitmap(eyes, 2, 0);
         litEyes = eyes;
         showBitmap(mouth, 3, 2);
@@ -204,7 +204,7 @@ namespace faces {
     //% wait.shadow="toggleYesNo"
     //% wait.defl=true
     //% weight=80
-    export function showEyes(eyes: Eyes, ms: number = 0, wait = true) {
+    export function showEyes(eyes: Eyes, ms: number = 0, wait: boolean = true) {
         showBitmap(eyes, 2, 0);
         litEyes = eyes;
         if (ms == 0) { // permanent change
@@ -233,7 +233,7 @@ namespace faces {
     //% wait.shadow="toggleYesNo"
     //% wait.defl=true
     //% weight=70
-    export function showMouth(mouth: Mouth, ms: number = 0, wait = true) {
+    export function showMouth(mouth: Mouth, ms: number = 0, wait: boolean = true) {
         showBitmap(mouth, 3, 2);
         if (ms == 0) { // permanent change
             myMouth = mouth;
@@ -262,7 +262,7 @@ namespace faces {
     //% wait.shadow="toggleYesNo"
     //% wait.defl=true
     //% weight=60
-    export function look(upDown: EyesV, leftRight: EyesH, ms: number = 0, wait = true) {
+    export function look(upDown: EyesV, leftRight: EyesH, ms: number = 0, wait:boolean = true) {
         let eyeMap = 0;
         if ((upDown == EyesV.Level) && (leftRight == EyesH.Ahead)) {
             eyeMap = Eye.All + (Eye.All << 3);
@@ -309,7 +309,7 @@ namespace faces {
 
     /**
      * wink an eye for a short time
-     * @param leftEye if true, wink the left eye, else the right one
+     * @param isLeft if true, wink the left eye, else the right one
      * @param ms for how long (default is 750 ms)
      * @param wait if true: wait, else return immediately
 
@@ -323,7 +323,7 @@ namespace faces {
     //% wait.shadow="toggleYesNo"
     //% wait.defl=true
     //% weight=50
-    export function wink(isLeft: boolean, ms: number = 750, wait = true) {
+    export function wink(isLeft: boolean, ms: number = 750, wait: boolean = true) {
         let leftEye = myEyes & Eye.All;
         let rightEye = (myEyes >> 3) & Eye.All;
         let winking = bothEyes(leftEye, Eye.Down);
@@ -379,7 +379,7 @@ namespace faces {
          * @param vary the maximum % random +/- variation in gap
          * @param ms new length of a blink (in millisecs)
          */
-    //% block="blink every $gap|| +/- percent: $vary for $ms ms"
+    //% block="blink every $gap|| +/- percent: $vary for (ms) $ms"
     //% inlineInputMode=inline
     //% expandableArgumentMode="enabled"
     //% gap.shadow="timePicker"
