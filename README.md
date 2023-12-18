@@ -90,7 +90,7 @@ This block rolls the eyes in the chosen direction.
 
 ## Winking
 ```sig
-faces.wink(leftEye,ms, wait)
+faces.wink(isLeft, ms, wait)
 ```
 This block lets you wink the chosen eye, regardless of what face is currently showing.
 The default wink takes 750ms, but you can optionally change this.
