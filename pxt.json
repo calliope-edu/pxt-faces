@@ -10,8 +10,6 @@
         "pxt-faces.ts"
     ],
     "testFiles": [
-        "main.ts",
-        "main.blocks",
         "test.ts"
     ],
     "targetVersions": {
