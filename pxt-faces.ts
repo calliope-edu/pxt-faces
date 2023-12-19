@@ -165,7 +165,7 @@ namespace faces {
      * @param ms for how long (if temporary change)
      * @param wait if true: wait, else return immediately
      */
-    //% block="show face: eyes= $eyes, mouth= $mouth||, for (ms) $ms, wait? $wait"
+    //% block="show face: eyes= $eyes, mouth= $mouth|| for (ms) $ms| wait? $wait"
     //% inlineInputMode=inline
     //% expandableArgumentMode="enabled"
     //% ms.shadow="timePicker"
@@ -173,7 +173,7 @@ namespace faces {
     //% wait.shadow="toggleYesNo"
     //% wait.defl=true
     //% weight=90
-    export function showFace(eyes: Eyes, mouth: Mouth, ms: number = 2000, wait: boolean = true) {
+    export function showFace(eyes: Eyes, mouth: Mouth, ms: number = 0, wait: boolean = true) {
         showBitmap(eyes, 2, 0);
         litEyes = eyes;
         showBitmap(mouth, 3, 2);
@@ -196,7 +196,7 @@ namespace faces {
      * @param ms for how long (if temporary change)
      * @param wait if true: wait, else return immediately
      */
-    //% block="show eyes: $eyes|| for (ms) $ms, wait? $wait"
+    //% block="show eyes: $eyes|| for (ms) $ms| wait? $wait"
     //% inlineInputMode=inline
     //% expandableArgumentMode="enabled"
     //% ms.shadow="timePicker"
@@ -225,7 +225,7 @@ namespace faces {
      * @param ms for how long (if temporary change)
      * @param wait if true: wait, else return immediately
      */
-    //% block="show mouth: $mouth|| for (ms) $ms, wait? $wait"
+    //% block="show mouth: $mouth|| for (ms) $ms| wait? $wait"
     //% inlineInputMode=inline
     //% expandableArgumentMode="enabled"
     //% ms.shadow="timePicker"
@@ -254,7 +254,7 @@ namespace faces {
      * @param ms for how long (if temporary glance)
      * @param wait if true: wait, else return immediately
      */
-    //% block="look $upDown $leftRight|| for (ms) $ms, wait? $wait"
+    //% block="look $upDown $leftRight|| for (ms) $ms| wait? $wait"
     //% inlineInputMode=inline
     //% expandableArgumentMode="enabled"
     //% ms.shadow="timePicker"
@@ -314,7 +314,7 @@ namespace faces {
      * @param wait if true: wait, else return immediately
 
      */
-    //% block="wink: left Eye? $isLeft|| for (ms) $ms, wait? $wait"
+    //% block="wink: left Eye? $isLeft|| for (ms) $ms| wait? $wait"
     //% inlineInputMode=inline
     //% expandableArgumentMode="enabled"
     //% isLeft.shadow="toggleYesNo"
@@ -379,12 +379,12 @@ namespace faces {
          * @param vary the maximum % random +/- variation in gap
          * @param ms new length of a blink (in millisecs)
          */
-    //% block="blink every $gap|| +/- percent: $vary for (ms) $ms"
+    //% block="blink every $gap ms|| +/- percent: $vary| for (ms) $ms"
     //% inlineInputMode=inline
     //% expandableArgumentMode="enabled"
     //% gap.shadow="timePicker"
     //% gap.defl=2000
-    //% vary.min=0 vary.max=99 vary.defl=50
+    //% vary.min=0 vary.max=99 vary.defl=75
     //% ms.defl=125
     //% ms.shadow="timePicker"
     //% weight=30
