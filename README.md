@@ -126,6 +126,25 @@ If you click on the "+", you can set an optional parameter:
 > ``||faces:ms||`` - new length of a blink (in millisecs)
 
 
+## Example
+```blocks
+faces.blink(2000,80,250)
+let myMouth = faces.Mouth.Grin;
+let myEyes = faces.Eyes.Up;
+faces.showFace(myEyes, myMouth, 3000, false);
+pause(3000);
+faces.showMouth(faces.Mouth.Open, 16000, false);
+music.stringPlayable("C D E F G G E E F F D D C C C C", 60);
+pause(3000);
+faces.blink(500, 80, 100);
+faces.showFace(faces.Eyes.Mad, faces.Mouth.Sulk, 16000, false);
+music.stringPlayable("C D E F G G E E F F D D C C C C", 60);
+pause(5000);
+faces.blink(0);
+faces.showFace(faces.Eyes.Open, faces.Mouth.Ok);
+faces.wink(false,1000);
+```
+
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 > Open this page at [https://grandpabond.github.io/pxt-faces/](https://grandpabond.github.io/pxt-faces/)
 

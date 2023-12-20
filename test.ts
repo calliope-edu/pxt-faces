@@ -120,7 +120,6 @@ let myMouth = faces.Mouth.Grin;
 let myEyes = faces.Eyes.Up;
 faces.showFace(myEyes, myMouth, 3000, false);
 pause(3000);
-
 //sing 16 notes then close mouth again
 faces.showMouth(faces.Mouth.Open,16000,false);
 music.stringPlayable("C D E F G G E E F F D D C C C C", 60);
