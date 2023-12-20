@@ -128,12 +128,13 @@ namespace faces {
     function revertAfter(ms: number) {
         pause(ms);
         showBitmap(myEyes, 2, 0);
+        litEyes = myEyes;
         showBitmap(myMouth, 3, 2);
     }
 
-    // background blinker periodically shuts eyes, waits a bit,
-    // then re-displays litEyes (to allow a blink to occur even
-    // during a temporary eye-change, or a wink) 
+    // Background blinker: periodically shuts eyes, waits a bit,
+    // then re-displays not myEyes, but litEyes. (This allows a blink to
+    // occur even during a temporary eye-change, such as a glance or a wink) 
     function blinker() {
         if (!blinking) {
             blinking = true;
@@ -141,6 +142,20 @@ namespace faces {
                 showBitmap(Eyes.Shut, 2, 0);
                 pause(blinkTime);
                 showBitmap(litEyes, 2, 0);
+                // ~1 in 6 blinks are doubled and ~1 in 18 get trebled
+                if (randint(0, 9) == 0) {
+                    pause(150);
+                    showBitmap(Eyes.Shut, 2, 0);
+                    pause(blinkTime);
+                    showBitmap(litEyes, 2, 0);
+                }
+                if (randint(0, 9) == 0) {
+                    pause(150);
+                    showBitmap(Eyes.Shut, 2, 0);
+                    pause(blinkTime);
+                    showBitmap(litEyes, 2, 0);
+                }
+
                 // apply some jitter to time between blinks
                 let percent = 100 + randint(0, 2 * blinkVary) - blinkVary;
                 let time = blinkGap * percent / 100;
@@ -262,7 +277,7 @@ namespace faces {
     //% wait.shadow="toggleYesNo"
     //% wait.defl=true
     //% weight=60
-    export function look(upDown: EyesV, leftRight: EyesH, ms: number = 0, wait:boolean = true) {
+    export function look(upDown: EyesV, leftRight: EyesH, ms: number = 0, wait: boolean = true) {
         let eyeMap = 0;
         if ((upDown == EyesV.Level) && (leftRight == EyesH.Ahead)) {
             eyeMap = Eye.All + (Eye.All << 3);
@@ -318,6 +333,7 @@ namespace faces {
     //% inlineInputMode=inline
     //% expandableArgumentMode="enabled"
     //% isLeft.shadow="toggleYesNo"
+    //% isLeft.defl=true
     //% ms.shadow="timePicker"
     //% ms.defl=750
     //% wait.shadow="toggleYesNo"

@@ -115,7 +115,8 @@ faces.blink(gap: number, vary: number, ms: number)
 ```
 This block lets you control blinking, helping to show mood. A faster blink-rate appears 
 more agitated. Longer blinks might indicate boredom or sleepiness. Random changes to the 
-gap between blinks makes your micro:bit much more lifelike. 
+gap between blinks makes your micro:bit much more lifelike. For additional realism, there 
+are occasional double or even treble blinks.
 
 > ``||faces:gap||`` - the average time (in millisecs) between blinks (if zero, stop blinking)
 
