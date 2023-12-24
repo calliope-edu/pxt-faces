@@ -59,7 +59,7 @@ namespace faces {
         Grin = 14880,
         //% block="sulk"
         Sulk = 17856,
-        //% block="Hmmm"
+        //% block="hmmm"
         Hmmm = 14464,
         //% block="open"
         Open = 4420,
@@ -140,7 +140,7 @@ namespace faces {
     // then re-displays not myEyes, but litEyes. (This allows a blink to
     // occur even during a temporary eye-change, such as a glance or a wink) 
     function blinker() {
-        if (!blinking) {
+        if (!blinking) { // defend against overlapping instances
             blinking = true;
             while (blinkGap > 0) {
                 showBitmap(Eyes.Shut, 2, 0);
