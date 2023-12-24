@@ -128,23 +128,51 @@ If you click on the "+", you can set an optional parameter:
 
 
 ## Example
+Here is an example using some of the ``||faces:faces||`` blocks:
+
 ```blocks
-faces.blink(2000,80,250)
-let myMouth = faces.Mouth.Grin;
-let myEyes = faces.Eyes.Up;
-faces.showFace(myEyes, myMouth, 3000, false);
-pause(3000);
-faces.showMouth(faces.Mouth.Open, 16000, false);
-music.stringPlayable("C D E F G G E E F F D D C C C C", 60);
-pause(3000);
-faces.blink(500, 80, 100);
-faces.showFace(faces.Eyes.Mad, faces.Mouth.Sulk, 16000, false);
-music.stringPlayable("C D E F G G E E F F D D C C C C", 60);
-pause(5000);
-faces.blink(0);
-faces.showFace(faces.Eyes.Open, faces.Mouth.Ok);
-faces.wink(false,1000);
+// example script
+faces.showFace(faces.Eyes.Up, faces.Mouth.Grin)
+faces.blink(4000, 80, 250)
+basic.pause(5000)
+// sing wedding march
+faces.showMouth(faces.Mouth.Open, 8000, false)
+music._playDefaultBackground(music.builtInPlayableMelody(Melodies.Wedding), music.PlaybackMode.InBackground)
+basic.pause(5000)
+// change mood progressively to angry
+faces.blink(500, 80, 100)
+faces.showFace(faces.Eyes.Open, faces.Mouth.Flat)
+basic.pause(2000)
+faces.showFace(faces.Eyes.Up, faces.Mouth.Hmmm)
+basic.pause(2000)
+faces.rollEyes(true)
+faces.rollEyes(true)
+basic.pause(2000)
+faces.showFace(faces.Eyes.Mad, faces.Mouth.Sulk)
+basic.pause(2000)
+// sing funeral march
+faces.showMouth(faces.Mouth.Open, 4000, false)
+music._playDefaultBackground(music.builtInPlayableMelody(Melodies.Funeral), music.PlaybackMode.InBackground)
+basic.pause(5000)
+// recover...
+faces.showFace(faces.Eyes.Open, faces.Mouth.Flat)
+faces.blink(0)
+basic.pause(3000)
+// finish with a wink
+faces.showFace(faces.Eyes.Open, faces.Mouth.Ok)
+faces.wink(false, 1000)
 ```
+After showing a happy face for 5 seconds with slow blinking turned on, the mouth is opened 
+to sing the Wedding March (closing automatically after 8 seconds).
+
+After a short pause, the mood progressively changes: blinking speeds up, the eyes roll, and an angry face is shown.
+
+Again, the mouth is opened while the Funeral March is shouted-out.
+
+Again, because the mouth-change was only temporary, after 5 seconds the mouth reverts to sulking.
+
+Then, after a 5-second pause, the mood recovers, blinking is switched off and a happier face returns, 
+finally giving a slow wink.
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 > Open this page at [https://grandpabond.github.io/pxt-faces/](https://grandpabond.github.io/pxt-faces/)

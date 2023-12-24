@@ -1,6 +1,37 @@
+// example script
+faces.showFace(faces.Eyes.Up, faces.Mouth.Grin)
+faces.blink(4000, 80, 250)
+basic.pause(5000)
+// sing wedding march
+faces.showMouth(faces.Mouth.Open, 8000, false)
+music._playDefaultBackground(music.builtInPlayableMelody(Melodies.Wedding), music.PlaybackMode.InBackground)
+basic.pause(5000)
+// change mood progressively to angry
+faces.blink(500, 80, 100)
+faces.showFace(faces.Eyes.Open, faces.Mouth.Flat)
+basic.pause(2000)
+faces.showFace(faces.Eyes.Up, faces.Mouth.Hmmm)
+basic.pause(2000)
+faces.rollEyes(true)
+faces.rollEyes(true)
+basic.pause(2000)
+faces.showFace(faces.Eyes.Mad, faces.Mouth.Sulk)
+basic.pause(2000)
+// sing funeral march
+faces.showMouth(faces.Mouth.Open, 4000, false)
+music._playDefaultBackground(music.builtInPlayableMelody(Melodies.Funeral), music.PlaybackMode.InBackground)
+basic.pause(5000)
+// recover...
+faces.showFace(faces.Eyes.Open, faces.Mouth.Flat)
+faces.blink(0)
+basic.pause(3000)
+// finish with a wink
+faces.showFace(faces.Eyes.Open, faces.Mouth.Ok)
+faces.wink(false, 1000)
 
+// now test everything...
 faces.showFace(faces.Eyes.Open, faces.Mouth.Ok, 0, true);
-/*
+
 faces.showEyes(faces.Eyes.Sad, 0, true);
 basic.pause(500);
 faces.showEyes(faces.Eyes.Shut, 0, true);
@@ -91,7 +122,7 @@ for (let v=0; v < 3; v++) {
 basic.pause(2000);
 faces.showEyes(faces.Eyes.Open);
 
-*/
+
 faces.wink(true);
 basic.pause(500);
 faces.wink(false);
@@ -114,22 +145,3 @@ basic.pause(3000);
 faces.showFace(faces.Eyes.Open, faces.Mouth.Ok, 0, true);
 faces.blink(2000, 0, 300);
 basic.pause(5000);
-
-faces.blink(2000,80,250)
-let myMouth = faces.Mouth.Grin;
-let myEyes = faces.Eyes.Up;
-faces.showFace(myEyes, myMouth, 3000, false);
-pause(3000);
-//sing 16 notes then close mouth again
-faces.showMouth(faces.Mouth.Open,16000,false);
-music.stringPlayable("C D E F G G E E F F D D C C C C", 60);
-pause(3000);
-//shout angrily
-faces.blink(500, 80, 100);
-faces.showFace(faces.Eyes.Mad, faces.Mouth.Sulk, 16000, false);
-music.stringPlayable("C D E F G G E E F F D D C C C C", 60);
-pause(5000);
-
-faces.blink(0);
-faces.showFace(faces.Eyes.Open, faces.Mouth.Ok);
-faces.wink(false,1000);

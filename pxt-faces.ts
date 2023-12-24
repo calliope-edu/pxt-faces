@@ -126,10 +126,14 @@ namespace faces {
     }
     // change back to [myEyes, myMouth] after temporary expression
     function revertAfter(ms: number) {
+        reverting = true; // defend against overlapping instances
         pause(ms);
-        showBitmap(myEyes, 2, 0);
-        litEyes = myEyes;
-        showBitmap(myMouth, 3, 2);
+        if (reverting) {  // revert, unless another instance already did this...
+            reverting = false;
+            showBitmap(myEyes, 2, 0);
+            litEyes = myEyes;
+            showBitmap(myMouth, 3, 2);
+        }
     }
 
     // Background blinker: periodically shuts eyes, waits a bit,
@@ -266,7 +270,7 @@ namespace faces {
      * look in the chosen direction
      * @param upDown vertical eye-position
      * @param leftRight horizontal eye-position
-     * @param ms for how long (if temporary glance)
+     * @param ms for how long (if a temporary glance)
      * @param wait if true: wait, else return immediately
      */
     //% block="look $upDown $leftRight|| for (ms) $ms| wait? $wait"
@@ -421,6 +425,7 @@ namespace faces {
     let myEyes = 0;
     let myMouth = 0;
     let litEyes = 0;
+    let reverting = false;
     let blinking = false;
     let blinkGap = 0;
     let blinkVary = 0;
