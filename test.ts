@@ -1,33 +1,38 @@
 // example script
-faces.showFace(faces.Eyes.Up, faces.Mouth.Grin)
+faces.showFace(faces.Eyes.Open, faces.Mouth.Grin)
 faces.blink(4000, 80, 250)
 basic.pause(5000)
-// sing wedding march
+// sing wedding march (takes about 8 secs)
 faces.showMouth(faces.Mouth.Open, 8000, false)
 music._playDefaultBackground(music.builtInPlayableMelody(Melodies.Wedding), music.PlaybackMode.InBackground)
-basic.pause(5000)
+// could do other stuff here...
+basic.pause(8000)
 // change mood progressively to angry
 faces.blink(500, 80, 100)
 faces.showFace(faces.Eyes.Open, faces.Mouth.Flat)
-basic.pause(2000)
+basic.pause(3000)
 faces.showFace(faces.Eyes.Up, faces.Mouth.Hmmm)
-basic.pause(2000)
+basic.pause(3000)
+faces.rollEyes(true)
 faces.rollEyes(true)
 faces.rollEyes(true)
 basic.pause(2000)
 faces.showFace(faces.Eyes.Mad, faces.Mouth.Sulk)
 basic.pause(2000)
-// sing funeral march
-faces.showMouth(faces.Mouth.Open, 4000, false)
+// shout funeral march (takes about 4 secs)
+faces.showMouth(faces.Mouth.Shout, 4000, false)
 music._playDefaultBackground(music.builtInPlayableMelody(Melodies.Funeral), music.PlaybackMode.InBackground)
 basic.pause(5000)
-// recover...
+// get over it!...
 faces.showFace(faces.Eyes.Open, faces.Mouth.Flat)
 faces.blink(0)
 basic.pause(3000)
-// finish with a wink
+// happier now...
 faces.showFace(faces.Eyes.Open, faces.Mouth.Ok)
+basic.pause(5000)
+// finish with a wink
 faces.wink(false, 1000)
+basic.pause(5000)
 
 // now test everything...
 faces.showFace(faces.Eyes.Open, faces.Mouth.Ok, 0, true);
@@ -141,6 +146,13 @@ faces.rollEyes(false);
 faces.rollEyes(false);
 faces.rollEyes(false);
 basic.pause(3000);
+
+// cascade overlapping reversions
+faces.showFace(faces.Eyes.Open, faces.Mouth.Flat, 0, true);
+for (let i = 0; i < 10000; i++){
+    faces.showFace(faces.Eyes.Left, faces.Mouth.Left, 150, false);
+    faces.showFace(faces.Eyes.Right, faces.Mouth.Right, 150, false);
+}
 
 faces.showFace(faces.Eyes.Open, faces.Mouth.Ok, 0, true);
 faces.blink(2000, 0, 300);

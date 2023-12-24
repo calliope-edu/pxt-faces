@@ -6,7 +6,6 @@ faces=github:grandpabond/pxt-faces
 We all like to use Emojis to express what we are feeling.
 Let your micro:bit do the same with the ``||faces:faces||`` extension!
 
-
 Sometimes a change of expression is only temporary (like a laugh or a wink).
 Other times it shows a more permanent change of mood (like a sulk).
 Your micro:bit may want to run some other code while temporarily changing its expression.
@@ -127,12 +126,16 @@ If you click on the "+", you can set an optional parameter:
 > ``||faces:ms||`` - new length of a blink (in millisecs)
 
 
-## Example
-Here is an example using some of the ``||faces:faces||`` blocks:
+## Examples
+Typically, the faces your micro:bit makes might be in response to various external stimuli, 
+such as light, noise, temperature, tilting or shaking;  --or maybe simply getting bored or sleepy!.
+
+### Mood-changes
+Here is a very simple example to show some of the ``||faces:faces||`` blocks in use.
 
 ```blocks
 // example script
-faces.showFace(faces.Eyes.Up, faces.Mouth.Grin)
+faces.showFace(faces.Eyes.Open, faces.Mouth.Grin)
 faces.blink(4000, 80, 250)
 basic.pause(5000)
 // sing wedding march
@@ -143,24 +146,27 @@ basic.pause(5000)
 faces.blink(500, 80, 100)
 faces.showFace(faces.Eyes.Open, faces.Mouth.Flat)
 basic.pause(2000)
-faces.showFace(faces.Eyes.Up, faces.Mouth.Hmmm)
+faces.showFace(faces.Eyes.Up, faces.Mouth.Hmmm, 500)
 basic.pause(2000)
 faces.rollEyes(true)
 faces.rollEyes(true)
 basic.pause(2000)
 faces.showFace(faces.Eyes.Mad, faces.Mouth.Sulk)
 basic.pause(2000)
-// sing funeral march
-faces.showMouth(faces.Mouth.Open, 4000, false)
+// shout funeral march
+faces.showMouth(faces.Mouth.Shout, 4000, false)
 music._playDefaultBackground(music.builtInPlayableMelody(Melodies.Funeral), music.PlaybackMode.InBackground)
 basic.pause(5000)
 // recover...
 faces.showFace(faces.Eyes.Open, faces.Mouth.Flat)
 faces.blink(0)
 basic.pause(3000)
-// finish with a wink
+// happier now...
 faces.showFace(faces.Eyes.Open, faces.Mouth.Ok)
+basic.pause(5000)
+// finish with a wink
 faces.wink(false, 1000)
+basic.pause(5000)
 ```
 After showing a happy face for 5 seconds with slow blinking turned on, the mouth is opened 
 to sing the Wedding March (closing automatically after 8 seconds).
@@ -169,10 +175,10 @@ After a short pause, the mood progressively changes: blinking speeds up, the eye
 
 Again, the mouth is opened while the Funeral March is shouted-out.
 
-Again, because the mouth-change was only temporary, after 5 seconds the mouth reverts to sulking.
+Because the mouth-change was only temporary, after 5 seconds the mouth automatically changes back to sulking.
 
-Then, after a 5-second pause, the mood recovers, blinking is switched off and a happier face returns, 
-finally giving a slow wink.
+Then, after a 5-second pause, the mood gradually recovers, blinking is switched off and a happier face returns, 
+finally giving us a slow wink.
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 > Open this page at [https://grandpabond.github.io/pxt-faces/](https://grandpabond.github.io/pxt-faces/)
