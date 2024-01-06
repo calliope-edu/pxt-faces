@@ -1,6 +1,6 @@
 {
     "name": "pxt-faces",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "animated faces that let your micro:bit express itself",
     "license": "MIT",
     "dependencies": {
