@@ -1,7 +1,7 @@
 {
     "name": "pxt-faces",
     "version": "1.0.3",
-    "description": "animated faces that let your micro:bit express itself",
+    "description": "Animated faces that let your Calliope mini express itself",
     "license": "MIT",
     "dependencies": {
         "core": "*"
@@ -9,17 +9,18 @@
     "files": [
         "README.md",
         "pxt-faces.ts",
-        "_locales/en-GB/README.md"
+        "_locales/en-GB/README.md",
+        "_locales/de-DE/README.md"
     ],
     "testFiles": [
         "test.ts"
     ],
     "targetVersions": {
         "target": "6.1.8",
-        "targetId": "microbit"
+        "targetId": "Calliopemini"
     },
     "supportedTargets": [
-        "microbit"
+        "Calliopemini"
     ],
     "preferredEditor": "tsprj"
 }
