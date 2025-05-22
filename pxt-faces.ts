@@ -1,7 +1,7 @@
 /**
  * an extension for making faces...
  */
-//% color=#c088e0 weight=100 icon="\uf118" block="Faces" block.loc.de="Gesichter"
+//% color=#c088e0 weight=100 icon="\uf118" block="Faces" block.loc.de="Faces"
 namespace faces {
     // CONSTANTS & ENUMS...
 
@@ -51,7 +51,7 @@ namespace faces {
     //      32   64  128  256  512 
     //      1K   2K   4K   8K  16K  
     export enum Mouth {
-        //% block="flat" block.loc.de="gerade"
+        //% block="flat" block.loc.de="schmal"
         Flat = 448,
         //% block="ok" block.loc.de="ok"
         Ok = 4416,
