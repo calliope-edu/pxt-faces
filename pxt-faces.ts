@@ -1,7 +1,7 @@
 /**
  * an extension for making faces...
  */
-//% color=#c088e0 weight=100 icon="\uf118" block="Faces"
+//% color=#c088e0 weight=100 icon="\uf118" block="Faces" block.loc.de="Gesichter"
 namespace faces {
     // CONSTANTS & ENUMS...
 
@@ -28,21 +28,21 @@ namespace faces {
 
     // EYES: (the value of each Enum is a two-row bitmap)
     export enum Eyes {
-        //% block="open"
+        //% block="open" block.loc.de="offen"
         Open = 891,
-        //% block="sad"
+        //% block="sad" block.loc.de="traurig"
         Sad = 874,
-        //% block="shut"
+        //% block="shut" block.loc.de="geschlossen"
         Shut = 864,
-        //% block="mad"
+        //% block="mad" block.loc.de="wütend"
         Mad = 347,
-        //% block="up"
+        //% block="up" block.loc.de="nach oben"
         Up = 27,
-        //% block="pop"
+        //% block="pop" block.loc.de="aufgerissen"
         Pop = 561,
-        //% block="left"
+        //% block="left" block.loc.de="nach links"
         Left = 297,
-        //% block="right"
+        //% block="right" block.loc.de="nach rechts"
         Right = 594
     };
 
@@ -51,51 +51,51 @@ namespace faces {
     //      32   64  128  256  512 
     //      1K   2K   4K   8K  16K  
     export enum Mouth {
-        //% block="flat"
+        //% block="flat" block.loc.de="gerade"
         Flat = 448,
-        //% block="ok"
+        //% block="ok" block.loc.de="ok"
         Ok = 4416,
-        //% block="grin"
+        //% block="grin" block.loc.de="grinsen"
         Grin = 14880,
-        //% block="sulk"
+        //% block="sulk" block.loc.de="schmollen"
         Sulk = 17856,
-        //% block="hmmm"
+        //% block="hmmm" block.loc.de="hmmm"
         Hmmm = 14464,
-        //% block="open"
+        //% block="open" block.loc.de="offen"
         Open = 4420,
-        //% block="left"
+        //% block="left" block.loc.de="nach links"
         Left = 6240,
-        //% block="right"
+        //% block="right" block.loc.de="nach rechts"
         Right = 13056,
-        //% block="shout"
+        //% block="shout" block.loc.de="schreien"
         Shout = 14660,
-        //% block="laugh"
+        //% block="laugh" block.loc.de="lachen"
         Laugh = 15204,
-        //% block="smirk"
+        //% block="smirk" block.loc.de="schmunzeln"
         Smirk = 6944,
-        //% block="kiss"
+        //% block="kiss" block.loc.de="küssen"
         Kiss = 128
     };
 
     export enum EyesV {
-        //% block="up"
+        //% block="up" block.loc.de="oben"
         Up,
-        //% block="level"
+        //% block="level" block.loc.de="geradeaus"
         Level,
-        //% block="down"
+        //% block="down" block.loc.de="unten"
         Down
     };
 
     export enum EyesH {
-        //% block="left"
+        //% block="left" block.loc.de="links"
         Left,
-        //% block="ahead"
+        //% block="ahead" block.loc.de="geradeaus"
         Ahead,
-        //% block="right"
+        //% block="right" block.loc.de="rechts"
         Right,
-        //% block="inwards"
+        //% block="inwards" block.loc.de="nach innen"
         Inwards,
-        //% block="outwards"
+        //% block="outwards" block.loc.de="nach außen"
         Outwards
     };
 
@@ -185,6 +185,7 @@ namespace faces {
      * @param wait if true: wait, else return immediately
      */
     //% block="show face: eyes= $eyes, mouth= $mouth|| for (ms) $ms| wait? $wait"
+    //% block.loc.de="zeige Gesicht: Augen= $eyes, Mund= $mouth|| für (ms) $ms| warten? $wait"
     //% inlineInputMode=inline
     //% expandableArgumentMode="enabled"
     //% ms.shadow="timePicker"
@@ -216,6 +217,7 @@ namespace faces {
      * @param wait if true: wait, else return immediately
      */
     //% block="show eyes: $eyes|| for (ms) $ms| wait? $wait"
+    //% block.loc.de="zeige Augen: $eyes|| für (ms) $ms| warten? $wait"
     //% inlineInputMode=inline
     //% expandableArgumentMode="enabled"
     //% ms.shadow="timePicker"
@@ -245,6 +247,7 @@ namespace faces {
      * @param wait if true: wait, else return immediately
      */
     //% block="show mouth: $mouth|| for (ms) $ms| wait? $wait"
+    //% block.loc.de="zeige Mund: $mouth|| für (ms) $ms| warten? $wait"
     //% inlineInputMode=inline
     //% expandableArgumentMode="enabled"
     //% ms.shadow="timePicker"
@@ -274,6 +277,7 @@ namespace faces {
      * @param wait if true: wait, else return immediately
      */
     //% block="look $upDown $leftRight|| for (ms) $ms| wait? $wait"
+    //% block.loc.de="schaue $upDown $leftRight|| für (ms) $ms| warten? $wait"
     //% inlineInputMode=inline
     //% expandableArgumentMode="enabled"
     //% ms.shadow="timePicker"
@@ -334,6 +338,7 @@ namespace faces {
 
      */
     //% block="wink: left Eye? $isLeft|| for (ms) $ms| wait? $wait"
+    //% block.loc.de="zwinkere: linkes Auge? $isLeft|| für (ms) $ms| warten? $wait"
     //% inlineInputMode=inline
     //% expandableArgumentMode="enabled"
     //% isLeft.shadow="toggleYesNo"
@@ -365,6 +370,7 @@ namespace faces {
      * @param clockwise clockwise if true, else anti-clockwise
      */
     //% block="roll eyes: clockwise? $clockwise"
+    //% block.loc.de="rolle Augen: im Uhrzeigersinn? $clockwise"
     //% clockwise.shadow="toggleYesNo"
     //% clockwise.defl=true
     //% weight=40
@@ -400,6 +406,7 @@ namespace faces {
          * @param ms new length of a blink (in millisecs)
          */
     //% block="blink every $gap ms|| +/- percent: $vary| for (ms) $ms"
+    //% block.loc.de="blinzle alle $gap ms|| +/- Prozent: $vary| für (ms) $ms"
     //% inlineInputMode=inline
     //% expandableArgumentMode="enabled"
     //% gap.shadow="timePicker"
