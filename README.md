@@ -4,6 +4,8 @@ You will find the English ReadMe at the end of the document.
 
 Um diese Erweiterung in MakeCode einzubinden, verwende diesen Link: https://github.com/calliope-edu/pxt-faces
 
+Die Ursprungserweiterung ist unter https://github.com/GrandpaBond/pxt-faces zu finden
+
 Wir alle verwenden gerne Emojis, um auszudrücken, was wir fühlen.
 Lass deinen Calliope mini das Gleiche mit der ``||faces:faces||`` Erweiterung tun!
 
@@ -214,6 +216,7 @@ Um dieses Repository in MakeCode zu bearbeiten.
 # Faces Extension
 
 This extension is preloaded into the extension category into MakeCode, though you can also inlude this extension if use this link: https://github.com/calliope-edu/pxt-faces
+The original extension can be found at https://github.com/GrandpaBond/pxt-faces
 
 We all like to use Emojis to express what we are feeling.
 Let your Calliope mini do the same with the ``||faces:faces||`` extension!
